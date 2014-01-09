@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 use OpenCloud\Rackspace;
-use OpenCloud\Compute\Constats\Network;
+use OpenCloud\Compute\Constants\Network;
 
 $inifile = parse_ini_file("credentials.ini");
 $client = new Rackspace(Rackspace::US_IDENTITY_ENDPOINT, $inifile);
@@ -28,7 +28,7 @@ try {
   $statusCode   = $e->getResponse()->getStatusCode();
   $headers      = $e->getResponse()->getHeaderLines();
   
-  echo sprintf("Status: %s\nBody: %s\nHeaders: %s", $statusCode, $responseBody, impode(', ', $headers));
+  echo sprintf("Status: %s\nBody: %s\nHeaders: %s", $statusCode, $responseBody, implode(', ', $headers));
 }
 
 
