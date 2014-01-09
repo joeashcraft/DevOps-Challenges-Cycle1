@@ -12,11 +12,10 @@ $client = new Rackspace(Rackspace::US_IDENTITY_ENDPOINT, $inifile);
 $compute = $client->computeService('cloudServersOpenStack', 'IAD');
 $centos64 = $compute->image('f70ed7c7-b42e-4d77-83d8-40fa29825b85');
 $halfGigFlavor = $compute->flavor('2');
-
 $server = $compute->server();
 
 try {
-  $response = $server->create(array(
+  $server->create(array(
     'name'      =>  'API Challenge 1',
     'image'     =>  $centos64,
     'flavor'    =>  $halfGigFlavor,
@@ -48,3 +47,5 @@ if ($server->status() == "ACTIVE") {
 echo sprintf("Public IP: %s\n", $server->accessIPv4);
 
 ?>
+
+
