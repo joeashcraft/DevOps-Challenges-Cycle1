@@ -17,7 +17,7 @@ try {
   $response = $server->create(array(
     'name'      =>  'API Challenge 1',
     'image'     =>  $centos64,
-    'flavor'    =>  '12345',//$halfGiGFlavor,
+    'flavor'    =>  $halfGigFlavor,
     'networks'  =>  array(
       $compute->network(Network::RAX_PUBLIC),
       $compute->network(Network::RAX_PRIVATE)
@@ -31,5 +31,7 @@ try {
   echo sprintf("Status: %s\nBody: %s\nHeaders: %s", $statusCode, $responseBody, implode(', ', $headers));
 }
 
+echo sprintf("Creating server '%s'\n", $server->name);
+echo sprintf("Admin Password: '%s'\n", $server->adminPass);
 
 ?>
