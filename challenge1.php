@@ -8,8 +8,6 @@ $inifile = parse_ini_file("credentials.ini");
 $client = new Rackspace(Rackspace::US_IDENTITY_ENDPOINT, $inifile);
 
 $compute = $client->computeService('cloudServersOpenStack', 'IAD');
-print_r($computer->server());
-
 $centos64 = $compute->image('f70ed7c7-b42e-4d77-83d8-40fa29825b85');
 $halfGigFlavor = $compute->flavor('2');
 
