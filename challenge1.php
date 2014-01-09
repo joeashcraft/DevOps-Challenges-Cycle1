@@ -19,13 +19,19 @@ try {
   $response = $server->create(array(
     'name'      =>  'API Challenge 1',
     'image'     =>  $centos64,
-    'flavor'    =>  $halfGiGFlavor,
+    'flavor'    =>  '12345',//$halfGiGFlavor,
     'networks'  =>  array(
       $compute->network(Network::RAX_PUBLIC),
       $compute->network(Network::RAX_PRIVATE)
     )
   ));
-} catch (\Guzzle\Http\Exception\BadResponseException)
+} catch (\Guzzle\Http\Exception\BadResponseException $e) {
+  $responseBody = (string) $e->getResponse()->getBody();
+  $statusCode   = $e->getResponse()->getStatusCode();
+  $headers      = $e->getResponse()->getHeaderLines();
+  
+  echo sprintf("Status: %s\nBody: %s\nHeaders: %s", $statusCode, $responseBody, impode(', ', $headers));
+}
 
 
 ?>
