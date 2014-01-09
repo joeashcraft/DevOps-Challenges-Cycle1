@@ -3,6 +3,8 @@
 require 'vendor/autoload.php';
 use OpenCloud\Rackspace;
 use OpenCloud\Compute\Constants\Network;
+use OpenCloud\Compute\Constants\ServerState;
+
 
 $inifile = parse_ini_file("credentials.ini");
 $client = new Rackspace(Rackspace::US_IDENTITY_ENDPOINT, $inifile);
@@ -33,5 +35,16 @@ try {
 
 echo sprintf("Creating server '%s'\n", $server->name);
 echo sprintf("Admin Password: '%s'\n", $server->adminPass);
+
+$server->waitFor(ServerState::ACTIVE, 600, null);
+
+if ($server->status() == "ACTIVE") {
+  echo "Server build completed successfully!\n";
+} else {
+  echo "Server build failed\n";
+  exit();
+}
+
+echo sprintf("Public IP: %s\n", $server->accessIPv4);
 
 ?>
