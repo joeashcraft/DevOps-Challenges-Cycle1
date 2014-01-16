@@ -8,8 +8,8 @@ use OpenCloud\Compute\Constants\ServerState;
 global $argv;
 
 function usage(){
+  echo "\nUSAGE: ./challenge2.php <name of servers> <number of servers>\n";
   echo "Create 1-3 servers named after user input.\n";
-  echo "./challenge2.php <name of servers> <number of servers>\n";
 }
 
 // check arguments exist
